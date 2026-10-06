@@ -1,0 +1,46 @@
+<view class="container">
+  <!-- 顶部位置 -->
+  <view class="topbar">
+    <view class="loc" bindtap="switchLocation">
+      <text class="loc-text">{{location}}</text>
+      <text class="loc-switch">切换</text>
+    </view>
+    <text class="loc-action" bindtap="chooseLocation">选位置</text>
+  </view>
+
+  <!-- 视图切换 -->
+  <view class="view-tabs">
+    <view class="vtab {{view === 'list' ? 'is-sel' : ''}}" data-v="list" bindtap="switchView">列表</view>
+    <view class="vtab {{view === 'map' ? 'is-sel' : ''}}" data-v="map" bindtap="switchView">地图</view>
+  </view>
+
+  <!-- 筛选 -->
+  <scroll-view scroll-x class="filters" enhanced show-scrollbar="{{false}}">
+    <view
+      wx:for="{{filters}}"
+      wx:key="key"
+      class="ftab {{activeFilter === item.key ? 'is-sel' : ''}}"
+      data-key="{{item.key}}"
+      bindtap="switchFilter"
+    >{{item.label}}</view>
+  </scroll-view>
+
+  <!-- 提示 -->
+  <view class="tip">当前展示{{location}}全市，区县仅作地址标签</view>
+
+  <!-- 地图占位 -->
+  <view class="map">
+    <view
+      wx:for="{{pins}}"
+      wx:key="id"
+      class="pin pin-{{item.type}}"
+      style="left: {{item.x}}%; top: {{item.y}}%;"
+      data-name="{{item.label}}"
+      bindtap="openPin"
+    >
+      <view class="pin-dot"></view>
+      <text class="pin-label">{{item.label}}</text>
+    </view>
+    <view class="map-watermark">地图视图</view>
+  </view>
+</view>

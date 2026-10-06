@@ -1,0 +1,85 @@
+.container { padding-bottom: 40rpx; }
+
+.topbar {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 22rpx 32rpx 12rpx;
+}
+.loc { display: flex; align-items: baseline; gap: 12rpx; }
+.loc-text { font-size: 32rpx; color: #1A1A1A; font-weight: 700; }
+.loc-switch { color: #3B6CFF; font-size: 24rpx; }
+.loc-action { color: #3B6CFF; font-size: 26rpx; }
+
+.view-tabs {
+  display: flex;
+  padding: 12rpx 32rpx;
+}
+.vtab {
+  padding: 12rpx 36rpx;
+  color: #6B6B6B;
+  font-size: 26rpx;
+  border-bottom: 4rpx solid transparent;
+}
+.vtab.is-sel {
+  color: #2D6A4F;
+  font-weight: 700;
+  border-bottom-color: #2D6A4F;
+}
+
+.filters { white-space: nowrap; padding: 0 24rpx 16rpx; }
+.ftab {
+  display: inline-block;
+  padding: 10rpx 24rpx;
+  margin: 0 8rpx;
+  background: #FFFFFF;
+  color: #6B6B6B;
+  border-radius: 999rpx;
+  font-size: 24rpx;
+}
+.ftab.is-sel { background: #2D6A4F; color: #FFFFFF; }
+
+.tip {
+  margin: 0 32rpx 12rpx;
+  padding: 16rpx 24rpx;
+  background: rgba(59,108,255,0.08);
+  color: #3B6CFF;
+  font-size: 22rpx;
+  border-radius: 12rpx;
+}
+
+.map {
+  position: relative;
+  margin: 0 32rpx;
+  height: 980rpx;
+  background: linear-gradient(135deg, #E8F0FF 0%, #DDE9FF 60%, #CFE0FF 100%);
+  border-radius: 20rpx;
+  overflow: hidden;
+}
+.map-watermark {
+  position: absolute; right: 24rpx; bottom: 24rpx;
+  color: rgba(45,106,79,0.4);
+  font-size: 28rpx;
+  font-weight: 700;
+}
+.pin {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex; flex-direction: column; align-items: center;
+}
+.pin-dot {
+  width: 28rpx; height: 28rpx;
+  border-radius: 50%;
+  border: 4rpx solid #FFFFFF;
+  box-shadow: 0 0 0 2rpx rgba(0,0,0,0.1);
+}
+.pin-foster .pin-dot { background: #2D6A4F; }
+.pin-walk   .pin-dot { background: #3B6CFF; }
+.pin-walked .pin-dot { background: #F59E0B; }
+.pin-need   .pin-dot { background: #E03A3A; }
+.pin-label {
+  margin-top: 6rpx;
+  background: rgba(255,255,255,0.95);
+  padding: 4rpx 12rpx;
+  border-radius: 999rpx;
+  font-size: 22rpx;
+  color: #1A1A1A;
+}

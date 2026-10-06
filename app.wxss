@@ -1,0 +1,90 @@
+/* 全局样式 - 狗狗大队 */
+page {
+  --brand: #2D6A4F;
+  --brand-deep: #1B4332;
+  --brand-light: #52B788;
+  --accent: #3B6CFF;
+  --accent-light: #E8F0FF;
+  --bg: #F5F5F5;
+  --card: #FFFFFF;
+  --text-1: #1A1A1A;
+  --text-2: #6B6B6B;
+  --text-3: #9A9A9A;
+  --line: #EFEFEF;
+  --tag-bg: #F0F0F0;
+  --tag-sel-bg: #2D6A4F;
+  --tag-sel-text: #FFFFFF;
+  --danger: #E03A3A;
+  --warn: #F59E0B;
+  background: var(--bg);
+  color: var(--text-1);
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", Helvetica, "Microsoft YaHei", sans-serif;
+  font-size: 28rpx;
+  line-height: 1.5;
+}
+
+view, text, scroll-view, swiper, swiper-item { box-sizing: border-box; }
+
+.container { min-height: 100vh; background: var(--bg); }
+
+.card {
+  background: var(--card);
+  border-radius: 20rpx;
+  padding: 28rpx;
+  margin: 24rpx;
+  box-shadow: 0 4rpx 18rpx rgba(0,0,0,0.04);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #FFFFFF;
+  border-radius: 999rpx;
+  padding: 22rpx 0;
+  text-align: center;
+  font-size: 30rpx;
+  font-weight: 600;
+}
+.btn-primary[disabled] { background: #B8C6E8; }
+
+.btn-brand {
+  background: var(--brand);
+  color: #FFFFFF;
+  border-radius: 999rpx;
+  padding: 22rpx 0;
+  text-align: center;
+  font-size: 30rpx;
+  font-weight: 600;
+}
+
+.btn-outline {
+  background: #FFFFFF;
+  color: var(--accent);
+  border: 2rpx solid var(--accent);
+  border-radius: 999rpx;
+  padding: 20rpx 0;
+  text-align: center;
+  font-size: 30rpx;
+}
+
+.tag {
+  display: inline-block;
+  padding: 6rpx 18rpx;
+  background: var(--tag-bg);
+  color: var(--text-2);
+  border-radius: 999rpx;
+  font-size: 22rpx;
+  margin-right: 14rpx;
+}
+.tag-brand { background: rgba(45,106,79,0.12); color: var(--brand); }
+.tag-accent { background: var(--accent-light); color: var(--accent); }
+.tag-selected { background: var(--tag-sel-bg); color: var(--tag-sel-text); }
+
+.divider { height: 1rpx; background: var(--line); margin: 20rpx 0; }
+.ellipsis-1 { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ellipsis-2 { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
+
+.flex-row { display: flex; flex-direction: row; align-items: center; }
+.flex-between { display: flex; justify-content: space-between; align-items: center; }
+.flex-1 { flex: 1; min-width: 0; }
+
+.safe-bottom { padding-bottom: calc(env(safe-area-inset-bottom) + 140rpx); }

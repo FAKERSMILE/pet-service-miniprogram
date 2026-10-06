@@ -1,0 +1,118 @@
+<view class="container safe-bottom">
+  <!-- 顶部城市 -->
+  <view class="topbar">
+    <view class="topbar-left" bindtap="switchCity">
+      <text class="topbar-title">{{bannerText}}</text>
+      <view class="caret"></view>
+    </view>
+    <view class="topbar-right">
+      <view class="city-badge">南京</view>
+    </view>
+  </view>
+
+  <!-- 搜索栏 -->
+  <view class="search" bindtap="onSearch">
+    <view class="search-icon">🔍</view>
+    <text class="search-ph">搜索狗狗、活动、服务</text>
+  </view>
+
+  <!-- 狗狗出租 -->
+  <view class="card rent-card">
+    <view class="rent-head">
+      <view class="rent-title">狗狗出租</view>
+      <text class="rent-sub">为你和爱犬挑选专属伙伴</text>
+    </view>
+    <view class="rent-grid">
+      <view
+        wx:for="{{rentCards}}"
+        wx:key="id"
+        class="rent-item"
+        data-id="{{item.id}}"
+        bindtap="onRentTap"
+        style="background: {{item.cover}};"
+      >
+        <view class="rent-emoji">{{item.emoji}}</view>
+        <view class="rent-info">
+          <view class="rent-name">{{item.title}}</view>
+          <view class="rent-desc">{{item.desc}}</view>
+          <view class="rent-price">{{item.price}}</view>
+        </view>
+        <view class="rent-btn">去看看</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 功能入口 -->
+  <view class="card quick-card">
+    <view class="quick-row">
+      <view
+        wx:for="{{quickEntries}}"
+        wx:key="id"
+        class="quick-item"
+      >
+        <view class="quick-circle">{{item.emoji}}</view>
+        <text class="quick-title">{{item.title}}</text>
+        <text class="quick-desc">{{item.desc}}</text>
+      </view>
+    </view>
+    <view class="quick-more">
+      <text>滑动发现更多</text>
+      <text class="arrow">→</text>
+    </view>
+  </view>
+
+  <!-- 南京狗狗广场 -->
+  <view class="card square-card">
+    <view class="square-head">
+      <view class="square-titlewrap">
+        <view class="square-title">南京狗狗广场</view>
+        <view class="square-sub">同城 {{cityCount}} 只</view>
+      </view>
+      <view class="square-search-btn">
+        <text class="search-dot">●</text>
+      </view>
+    </view>
+
+    <scroll-view scroll-x class="square-tabs" enhanced show-scrollbar="{{false}}">
+      <view
+        wx:for="{{squareFilterTabs}}"
+        wx:key="key"
+        class="square-tab {{squareActive === item.key ? 'is-sel' : ''}}"
+        data-key="{{item.key}}"
+        bindtap="switchSquareTab"
+      >{{item.label}}</view>
+    </scroll-view>
+
+    <view class="square-list">
+      <view
+        wx:for="{{squareDogs}}"
+        wx:key="id"
+        class="dog-card"
+        bindtap="goPetDetail"
+      >
+        <view class="dog-avatar" style="background: {{item.avatar}};">
+          <text class="dog-emoji">{{item.emoji}}</text>
+        </view>
+        <text class="dog-name">{{item.name}}</text>
+        <text class="dog-breed">{{item.breed}}</text>
+      </view>
+      <view class="dog-card dog-more" bindtap="goActivity">
+        <view class="dog-avatar dog-avatar-more">
+          <text class="dog-emoji">＋</text>
+        </view>
+        <text class="dog-name">附近</text>
+        <text class="dog-breed">活动</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 记录狗狗的一生 -->
+  <view class="card record-card">
+    <view class="record-emoji">📷</view>
+    <view class="record-content">
+      <view class="record-title">记录狗狗的一生</view>
+      <view class="record-desc">每一段成长，都值得被珍藏</view>
+    </view>
+    <view class="btn-brand record-btn">记录</view>
+  </view>
+</view>

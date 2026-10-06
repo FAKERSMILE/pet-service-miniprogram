@@ -1,0 +1,59 @@
+<view class="container safe-bottom">
+  <!-- 顶部位置 -->
+  <view class="topbar">
+    <view class="loc" bindtap="switchLocation">
+      <text class="loc-icon">📍</text>
+      <text class="loc-text">{{location.city}} · {{location.district}}</text>
+      <view class="caret"></view>
+    </view>
+    <text class="loc-action" bindtap="switchLocation">切换</text>
+  </view>
+
+  <!-- 统计 + 发起活动 -->
+  <view class="hero">
+    <view class="hero-left">
+      <view class="hero-num">{{totalActivities}}<text class="hero-unit">场</text></view>
+      <text class="hero-label">附近活动</text>
+    </view>
+    <view class="hero-btn" bindtap="createActivity">发起活动</view>
+  </view>
+
+  <!-- 筛选 Tab -->
+  <scroll-view scroll-x class="filter-tabs" enhanced show-scrollbar="{{false}}">
+    <view
+      wx:for="{{filterTabs}}"
+      wx:key="key"
+      class="ftab {{activeTab === item.key ? 'is-sel' : ''}}"
+      data-key="{{item.key}}"
+      bindtap="switchTab"
+    >{{item.label}}</view>
+  </scroll-view>
+
+  <!-- 活动列表 -->
+  <view class="list">
+    <view
+      wx:for="{{filteredActivities}}"
+      wx:key="id"
+      class="act-card"
+      data-id="{{item.id}}"
+      bindtap="openActivity"
+    >
+      <view class="act-cover" style="background: {{item.cover}};">
+        <text class="act-emoji">🐾</text>
+        <view class="act-status status-{{item.statusType}}">{{item.status}}</view>
+      </view>
+      <view class="act-info">
+        <view class="act-title">{{item.title}}</view>
+        <view class="act-time">{{item.date}} {{item.timeStart}} 至 {{item.timeEnd}}</view>
+        <view class="act-loc">📍 {{item.location}}</view>
+        <view class="act-foot">
+          <view class="host">
+            <view class="host-avatar" style="background: {{item.hostColor}};">{{item.host[0]}}</view>
+            <text class="host-name">{{item.host}}</text>
+          </view>
+          <text class="signed">{{item.signed}}/{{item.total}}人</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

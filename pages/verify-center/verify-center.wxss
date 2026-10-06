@@ -1,0 +1,87 @@
+.container { padding-bottom: calc(env(safe-area-inset-bottom) + 160rpx); }
+
+.card-title { font-size: 28rpx; color: #1A1A1A; font-weight: 600; margin-bottom: 16rpx; }
+.req { color: #E03A3A; margin-left: 4rpx; }
+
+.intro {
+  width: 100%;
+  min-height: 160rpx;
+  padding: 18rpx;
+  background: #F8F8F8;
+  border-radius: 12rpx;
+  font-size: 26rpx;
+  color: #1A1A1A;
+  box-sizing: border-box;
+}
+.intro-ph { color: #B5B5B5; }
+
+.upload-card { padding: 24rpx; }
+.upload-row {
+  display: flex; align-items: center; gap: 16rpx;
+}
+.upload-tile {
+  flex: 1;
+  background: #F8F8F8;
+  border: 2rpx dashed #C7C7C7;
+  border-radius: 14rpx;
+  padding: 28rpx 20rpx;
+  display: flex; flex-direction: column; align-items: center;
+}
+.upload-plus { font-size: 48rpx; color: #C7C7C7; line-height: 1; }
+.upload-label { font-size: 26rpx; color: #1A1A1A; margin-top: 12rpx; font-weight: 600; }
+.upload-count { font-size: 22rpx; color: #9A9A9A; margin-top: 6rpx; }
+.upload-btn {
+  background: #3B6CFF; color: #FFFFFF;
+  padding: 18rpx 32rpx;
+  border-radius: 12rpx;
+  font-size: 26rpx;
+  font-weight: 600;
+}
+.warn-strip {
+  margin-top: 14rpx;
+  padding: 14rpx 18rpx;
+  background: rgba(245,158,11,0.10);
+  color: #B07000;
+  border-radius: 10rpx;
+  font-size: 22rpx;
+}
+
+.env-labels { display: flex; flex-wrap: wrap; gap: 12rpx; margin-bottom: 16rpx; }
+.env-label {
+  padding: 6rpx 16rpx;
+  background: #F0F0F0;
+  color: #6B6B6B;
+  border-radius: 999rpx;
+  font-size: 22rpx;
+}
+
+.agree-row {
+  display: flex; align-items: center; gap: 14rpx;
+  padding: 24rpx 32rpx;
+}
+.agree-check {
+  width: 32rpx; height: 32rpx;
+  border-radius: 6rpx;
+  border: 2rpx solid #C7C7C7;
+  color: #FFFFFF;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22rpx;
+}
+.agree-check.is-sel { background: #2D6A4F; border-color: #2D6A4F; }
+.agree-text { font-size: 24rpx; color: #6B6B6B; flex: 1; }
+
+.bottom-bar {
+  position: fixed; left: 0; right: 0; bottom: 0;
+  padding: 16rpx 32rpx calc(env(safe-area-inset-bottom) + 16rpx);
+  background: #FFFFFF;
+  box-shadow: 0 -2rpx 12rpx rgba(0,0,0,0.06);
+}
+.submit {
+  background: #3B6CFF;
+  color: #FFFFFF;
+  text-align: center;
+  padding: 26rpx 0;
+  border-radius: 999rpx;
+  font-size: 30rpx;
+  font-weight: 700;
+}

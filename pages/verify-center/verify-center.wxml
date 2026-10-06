@@ -1,0 +1,56 @@
+<view class="container safe-bottom">
+  <!-- 补充说明 -->
+  <view class="card">
+    <view class="card-title">补充说明</view>
+    <textarea
+      class="intro"
+      placeholder="请简要说明你的养宠经验、环境或服务方案…"
+      placeholder-class="intro-ph"
+      value="{{intro}}"
+      bindinput="onIntroInput"
+      maxlength="500"
+      auto-height
+    />
+  </view>
+
+  <!-- 身份核验 -->
+  <view class="card upload-card">
+    <view class="card-title">身份核验材料 <text class="req">*</text></view>
+    <view class="upload-row">
+      <view class="upload-tile" bindtap="uploadIdCard">
+        <view class="upload-plus">＋</view>
+        <text class="upload-label">身份证正反面</text>
+        <text class="upload-count">已选择 {{idCardSelected}}/{{idCardRequired}} 张</text>
+      </view>
+      <view class="upload-btn" bindtap="uploadIdCard">上传</view>
+    </view>
+    <view class="warn-strip">请上传清晰原件照片，用于身份核验</view>
+  </view>
+
+  <!-- 寄养环境 -->
+  <view class="card upload-card">
+    <view class="card-title">寄养环境照片 <text class="req">*</text></view>
+    <view class="env-labels">
+      <text wx:for="{{envLabels}}" wx:key="*this" class="env-label">{{item}}</text>
+    </view>
+    <view class="upload-row">
+      <view class="upload-tile" bindtap="uploadEnv">
+        <view class="upload-plus">＋</view>
+        <text class="upload-label">寄养环境</text>
+        <text class="upload-count">已选择 {{envSelected}}/{{envRequired}} 张 至少{{envMin}}张</text>
+      </view>
+      <view class="upload-btn" bindtap="uploadEnv">上传</view>
+    </view>
+  </view>
+
+  <!-- 协议 -->
+  <view class="agree-row" bindtap="toggleAgree">
+    <view class="agree-check {{agree ? 'is-sel' : ''}}">{{agree ? '✓' : ''}}</view>
+    <text class="agree-text">资料真实，同意绑定当前微信账号用于服务核验</text>
+  </view>
+
+  <!-- 提交 -->
+  <view class="bottom-bar">
+    <view class="submit" bindtap="submit">提交基础认证</view>
+  </view>
+</view>

@@ -1,0 +1,43 @@
+<view class="container">
+  <!-- 顶部轮播图 -->
+  <swiper class="swiper" indicator-dots="{{true}}" indicator-color="rgba(0,0,0,0.3)" indicator-active-color="#3B6CFF" autoplay="{{false}}" current="{{currentIndex}}" bindchange="onSwiperChange">
+    <swiper-item wx:for="{{images}}" wx:key="index">
+      <image src="{{item}}" mode="aspectFill" class="swiper-image" />
+    </swiper-item>
+  </swiper>
+
+  <!-- 详情卡片 -->
+  <view class="card">
+    <view class="badge-row">
+      <view class="badge badge-blue">寻狗信息</view>
+    </view>
+
+    <view class="description">白色稀疏的毛 鼻头是粉色的 上面有颗痣 叫它雅罗塔会有反应的</view>
+
+    <view class="meta-row">
+      <text class="meta-text">南京市江宁区周村·八月中旬</text>
+    </view>
+
+    <view class="tag-row">
+      <view class="tag">公益</view>
+      <view class="tag">寻狗信息</view>
+    </view>
+
+    <view class="section">
+      <view class="section-title">信息说明</view>
+      <view class="section-content">性格挺皮的 看人可能会跑掉 怕外人 不给人摸</view>
+    </view>
+
+    <view class="section">
+      <view class="section-title">安全提示</view>
+      <view class="section-content">公益信息不参与平台抽佣，所有捐助款项将全部用于救助行动，平台不收取任何费用。如有疑问请联系平台客服。</view>
+    </view>
+  </view>
+
+  <!-- 底部操作栏 -->
+  <view class="bottom-bar">
+    <view class="btn btn-primary" hover-class="btn-hover" bindtap="onContact">查看联系方式</view>
+    <view class="btn btn-outline" hover-class="btn-hover" bindtap="onReport">举报</view>
+    <button class="btn btn-outline" open-type="share" bindtap="onShare">分享</button>
+  </view>
+</view>

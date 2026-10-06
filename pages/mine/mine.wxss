@@ -1,0 +1,78 @@
+.container { padding-bottom: calc(env(safe-area-inset-bottom) + 140rpx); }
+
+.profile {
+  display: flex; align-items: center;
+  padding: 36rpx 32rpx 24rpx;
+}
+.avatar {
+  width: 112rpx; height: 112rpx;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: #FFFFFF; font-size: 48rpx; font-weight: 700;
+  margin-right: 24rpx;
+}
+.profile-info { display: flex; flex-direction: column; gap: 8rpx; }
+.nick { font-size: 34rpx; font-weight: 700; color: #1A1A1A; }
+.edit { font-size: 22rpx; color: #3B6CFF; }
+
+.order-card {
+  display: flex; align-items: center;
+  padding: 28rpx 32rpx;
+}
+.order-num {
+  font-size: 48rpx; font-weight: 800;
+  color: #2D6A4F;
+  min-width: 60rpx;
+}
+.order-label { flex: 1; font-size: 28rpx; color: #1A1A1A; margin-left: 18rpx; }
+.order-arrow { color: #C7C7C7; font-size: 28rpx; }
+
+.grid-card {
+  padding: 24rpx 16rpx;
+  display: flex; flex-wrap: wrap;
+}
+.grid-item {
+  width: 50%;
+  display: flex; flex-direction: column;
+  align-items: center;
+  padding: 24rpx 0;
+  position: relative;
+}
+.grid-icon-wrap { position: relative; }
+.grid-circle {
+  width: 88rpx; height: 88rpx;
+  background: rgba(45,106,79,0.10);
+  border-radius: 24rpx;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 44rpx;
+}
+.grid-badge {
+  position: absolute; top: -4rpx; right: -10rpx;
+  min-width: 28rpx; height: 28rpx;
+  padding: 0 8rpx;
+  background: #E03A3A;
+  color: #FFFFFF;
+  border-radius: 999rpx;
+  font-size: 20rpx;
+  line-height: 28rpx;
+  text-align: center;
+}
+.grid-title { font-size: 28rpx; color: #1A1A1A; font-weight: 600; margin-top: 14rpx; }
+.grid-desc  { font-size: 20rpx; color: #9A9A9A; margin-top: 4rpx; text-align: center; }
+
+.account-card { padding: 8rpx 32rpx; }
+.card-title {
+  font-size: 26rpx; color: #9A9A9A;
+  padding: 20rpx 0 8rpx;
+}
+.account-item {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 24rpx 0;
+  border-bottom: 1rpx solid #EFEFEF;
+}
+.account-item:last-child { border-bottom: 0; }
+.acc-left { display: flex; align-items: center; gap: 18rpx; }
+.acc-emoji { font-size: 40rpx; }
+.acc-title { font-size: 28rpx; color: #1A1A1A; font-weight: 600; }
+.acc-desc  { font-size: 22rpx; color: #9A9A9A; margin-top: 4rpx; }
+.acc-arrow { color: #C7C7C7; font-size: 28rpx; }

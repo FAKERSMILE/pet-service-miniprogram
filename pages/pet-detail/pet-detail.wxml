@@ -1,0 +1,45 @@
+<view class="container safe-bottom">
+  <view class="cover" style="background: {{pet.cover}};">
+    <text class="cover-emoji">🐶</text>
+    <view class="cover-name">{{pet.name}}</view>
+  </view>
+
+  <view class="info">
+    <view class="info-head">
+      <text class="pet-name">{{pet.name}}</text>
+      <text class="pet-breed">{{pet.breed}} · {{pet.gender}} · {{pet.age}}</text>
+    </view>
+    <view class="info-owner">
+      <view class="owner-avatar">Y</view>
+      <text class="owner-name">主人 {{pet.owner}}</text>
+    </view>
+    <view class="info-tags">
+      <text wx:for="{{pet.tags}}" wx:key="*this" class="tag tag-brand">{{item}}</text>
+    </view>
+  </view>
+
+  <view class="paw-card">
+    <view class="paw-head">
+      <text class="paw-title">{{pet.pawSign.title}}</text>
+      <view class="paw-tags">
+        <text wx:for="{{pet.pawSign.tags}}" wx:key="*this" class="paw-tag">{{item}}</text>
+      </view>
+    </view>
+    <text class="paw-desc">{{pet.pawSign.desc}}</text>
+    <view class="paw-status">{{pet.pawSign.status}}</view>
+  </view>
+
+  <view class="like-row">
+    <view class="like-left" bindtap="toggleLike">
+      <text class="heart">{{pet.lit ? '❤️' : '🤍'}}</text>
+      <text class="like-count">{{pet.likes}}喜欢</text>
+    </view>
+    <text class="like-action">点亮</text>
+  </view>
+
+  <view class="action-bar">
+    <view class="action-side" bindtap="report">举报</view>
+    <view class="action-side" bindtap="share" open-type="share">分享</view>
+    <view class="action-primary" bindtap="goTogether">一起遛</view>
+  </view>
+</view>

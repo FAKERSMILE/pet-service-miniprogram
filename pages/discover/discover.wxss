@@ -1,0 +1,200 @@
+.page {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #EEF3EC 0%, #F5F5F5 100%);
+  padding-bottom: calc(env(safe-area-inset-bottom) + 140rpx);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 装饰叶子 */
+.leaf {
+  position: absolute;
+  font-size: 120rpx;
+  opacity: 0.08;
+  z-index: 0;
+  pointer-events: none;
+}
+.leaf-tl { top: 80rpx; left: -20rpx; transform: rotate(-25deg); }
+.leaf-bl { bottom: 200rpx; right: -30rpx; transform: rotate(45deg); }
+
+/* 顶部 */
+.header {
+  position: relative; z-index: 2;
+  display: flex; justify-content: space-between; align-items: flex-start;
+  padding: 28rpx 32rpx 8rpx;
+}
+.header-left { flex: 1; }
+.big-title {
+  font-size: 40rpx; font-weight: 800; color: #1B4332;
+  line-height: 1.2;
+}
+.paw { font-size: 32rpx; }
+.sub-title {
+  font-size: 26rpx; color: #6B6B6B;
+  margin-top: 8rpx;
+}
+.header-right { display: flex; flex-direction: column; align-items: flex-end; gap: 8rpx; }
+.like-pill {
+  background: #FFFFFF;
+  padding: 10rpx 22rpx;
+  border-radius: 999rpx;
+  font-size: 24rpx;
+  color: #2D6A4F;
+  border: 2rpx solid rgba(45,106,79,0.3);
+}
+.like-pill .num { font-weight: 700; margin-left: 6rpx; }
+.remain { font-size: 22rpx; color: #9A9A9A; }
+.slogan {
+  position: relative; z-index: 2;
+  text-align: center;
+  color: #52B788;
+  font-size: 24rpx;
+  margin: 4rpx 0 24rpx;
+}
+
+/* 卡组 */
+.deck {
+  position: relative;
+  z-index: 1;
+  width: 620rpx;
+  height: 820rpx;
+  margin: 0 auto;
+}
+
+/* 所有卡通用样式 */
+.card {
+  position: absolute;
+  left: 0; right: 0; top: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 28rpx;
+  overflow: hidden;
+  background: #FFFFFF;
+  box-shadow: 0 10rpx 40rpx rgba(0,0,0,0.10);
+}
+
+/* 底层堆叠卡 */
+.ghost {
+  pointer-events: none;
+}
+.ghost-1 {
+  transform: translateY(-12rpx) scale(0.96);
+  opacity: 0.9;
+}
+.ghost-2 {
+  transform: translateY(-24rpx) scale(0.92);
+  opacity: 0.75;
+}
+
+/* 顶层卡 */
+.top-card {
+  z-index: 10;
+  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.top-card.fly-right {
+  transform: translateX(140vw) rotate(20deg) !important;
+  transition: transform 0.3s ease-out;
+  opacity: 0;
+}
+.top-card.fly-left {
+  transform: translateX(-140vw) rotate(-20deg) !important;
+  transition: transform 0.3s ease-out;
+  opacity: 0;
+}
+
+/* 卡内照片 */
+.photo {
+  position: relative;
+  height: 540rpx;
+  display: flex; align-items: center; justify-content: center;
+}
+.photo-emoji {
+  font-size: 280rpx;
+  filter: drop-shadow(0 4rpx 8rpx rgba(0,0,0,0.15));
+}
+
+/* 左右滑提示 */
+.stamp {
+  position: absolute;
+  top: 60rpx;
+  padding: 12rpx 32rpx;
+  border-radius: 14rpx;
+  font-size: 32rpx;
+  font-weight: 800;
+  color: #FFFFFF;
+  border: 4rpx solid #FFFFFF;
+  opacity: 0;
+  transform: rotate(-18deg);
+  transition: opacity 0.1s;
+}
+.stamp.show { opacity: 1; }
+.stamp-like { right: 40rpx; background: rgba(45,106,79,0.85); }
+.stamp-pass  { left: 40rpx; background: rgba(224,58,58,0.85); transform: rotate(18deg); }
+
+/* 卡内信息 */
+.card-info { padding: 22rpx 28rpx 24rpx; background: #FFFFFF; }
+.name-row {
+  display: flex; align-items: baseline; gap: 14rpx;
+  flex-wrap: wrap;
+}
+.dog-name { font-size: 38rpx; font-weight: 800; color: #1A1A1A; }
+.dog-breed { font-size: 24rpx; color: #6B6B6B; }
+.fate {
+  margin-left: auto;
+  display: flex; align-items: baseline; gap: 8rpx;
+}
+.fate-label { font-size: 22rpx; color: #9A9A9A; }
+.fate-num { font-size: 34rpx; font-weight: 800; color: #2D6A4F; }
+
+.loc-row {
+  font-size: 22rpx; color: #9A9A9A;
+  margin-top: 8rpx;
+}
+.tag-row {
+  display: flex; flex-wrap: wrap; gap: 12rpx;
+  margin-top: 16rpx;
+}
+.dtag {
+  padding: 8rpx 20rpx;
+  background: rgba(45,106,79,0.10);
+  color: #2D6A4F;
+  border-radius: 999rpx;
+  font-size: 22rpx;
+}
+
+/* 空卡组 */
+.empty {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  color: #9A9A9A; font-size: 26rpx;
+}
+
+/* 底部操作 */
+.actions {
+  position: relative; z-index: 2;
+  display: flex; justify-content: center; align-items: center; gap: 36rpx;
+  margin-top: 24rpx;
+}
+.act {
+  display: flex; flex-direction: column; align-items: center; gap: 6rpx;
+}
+.act-icon {
+  width: 96rpx; height: 96rpx;
+  border-radius: 50%;
+  background: #FFFFFF;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 44rpx;
+  box-shadow: 0 6rpx 18rpx rgba(0,0,0,0.08);
+}
+.act-label { font-size: 22rpx; color: #6B6B6B; }
+.act-label-green { color: #2D6A4F; font-weight: 600; }
+.act-pass .act-icon { color: #E03A3A; }
+.act-like .act-icon { color: #E03A3A; }
+.act-profile .act-icon { color: #2D6A4F; }
+
+.hint {
+  text-align: center;
+  color: #B5B5B5;
+  font-size: 22rpx;
+  margin-top: 18rpx;
+}

@@ -1,0 +1,66 @@
+<view class="container safe-bottom">
+  <!-- 顶部信息 -->
+  <view class="card service-head">
+    <view class="service-title">{{service.title}}</view>
+    <view class="service-meta">
+      <text class="meta-area">{{service.area}}</text>
+      <text class="meta-dot">·</text>
+      <text class="meta-scope">{{service.scope}}</text>
+    </view>
+    <view class="price-row">
+      <text class="price">¥{{service.price}}</text>
+      <text class="price-note">{{service.priceNote}}</text>
+    </view>
+  </view>
+
+  <!-- 服务标签群 -->
+  <view class="card tag-card">
+    <view class="card-title">服务标签</view>
+    <view class="tag-list">
+      <text wx:for="{{service.tags}}" wx:key="*this" class="tag tag-brand">{{item}}</text>
+    </view>
+  </view>
+
+  <!-- 代遛服务场景轮播 -->
+  <view class="card scene-card">
+    <view class="card-title">代遛服务场景</view>
+    <swiper class="scene-swiper" indicator-dots indicator-active-color="#2D6A4F" autoplay circular>
+      <swiper-item wx:for="{{service.scenes}}" wx:key="*this">
+        <view class="scene-slide" style="background: {{item}};">
+          <text class="scene-emoji">🐕</text>
+          <text class="scene-text">遛狗服务场景 {{index + 1}}</text>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+
+  <!-- 服务者卡片 -->
+  <view class="card provider-card">
+    <view class="card-title">服务者</view>
+    <view class="provider">
+      <view class="provider-avatar" style="background: {{provider.avatar}};">{{provider.name[0]}}</view>
+      <view class="provider-info">
+        <view class="provider-name-row">
+          <text class="provider-name">{{provider.name}}</text>
+          <text wx:if="{{provider.verified}}" class="v-tag">平台官方认证</text>
+          <text wx:if="{{provider.trained}}" class="t-tag">已完成培训</text>
+        </view>
+        <view class="provider-meta">
+          <text>{{provider.role}}</text>
+          <text class="dot">·</text>
+          <text>{{provider.orders}}单</text>
+          <text class="dot">·</text>
+          <text>投诉{{provider.complaint}}%</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部操作栏 -->
+  <view class="bottom-bar">
+    <view class="bb-side" bindtap="report">举报</view>
+    <view class="bb-side" bindtap="rules">规则与保障</view>
+    <view class="bb-side" bindtap="onShareAppMessage" open-type="share">分享</view>
+    <view class="bb-primary" bindtap="book">找Ta代遛</view>
+  </view>
+</view>

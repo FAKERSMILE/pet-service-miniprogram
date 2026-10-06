@@ -1,0 +1,126 @@
+.tab-bar {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  height: calc(100rpx + env(safe-area-inset-bottom));
+  padding-bottom: env(safe-area-inset-bottom);
+  background: #FFFFFF;
+  display: flex;
+  box-shadow: 0 -2rpx 12rpx rgba(0,0,0,0.05);
+  z-index: 999;
+}
+.tab-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding-top: 10rpx;
+}
+.indicator {
+  position: absolute;
+  top: 6rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12rpx; height: 12rpx;
+  border-radius: 50%;
+  background: #2D6A4F;
+}
+.icon-wrap { position: relative; width: 48rpx; height: 48rpx; display: flex; align-items: center; justify-content: center; }
+.icon-svg { width: 44rpx; height: 44rpx; display: flex; align-items: center; justify-content: center; }
+.svg-brand { color: #2D6A4F; }
+.svg-gray { color: #9A9A9A; }
+
+/* home icon: 简化屋顶+房身 */
+.i-home {
+  width: 26rpx; height: 24rpx;
+  background: currentColor;
+  clip-path: polygon(50% 0, 100% 35%, 100% 100%, 0 100%, 0 35%);
+  border-radius: 4rpx;
+  position: relative;
+}
+.i-home::after {
+  content: '';
+  position: absolute;
+  left: 50%; bottom: 0;
+  transform: translateX(-50%);
+  width: 8rpx; height: 12rpx;
+  background: #FFFFFF;
+}
+
+/* paw: 圆形主掌垫 + 4个椭圆趾 */
+.i-paw {
+  width: 22rpx; height: 18rpx;
+  background: currentColor;
+  border-radius: 50%;
+  position: relative;
+}
+.i-paw::before, .i-paw::after {
+  content: '';
+  position: absolute;
+  width: 8rpx; height: 8rpx;
+  background: currentColor;
+  border-radius: 50%;
+  top: -8rpx;
+}
+.i-paw::before { left: 2rpx; }
+.i-paw::after { right: 2rpx; }
+
+/* pin: 水滴形定位标 */
+.i-pin {
+  width: 18rpx; height: 26rpx;
+  background: currentColor;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  position: relative;
+  transform: rotate(-2deg);
+}
+.i-pin::after {
+  content: '';
+  position: absolute;
+  left: 50%; top: 6rpx;
+  transform: translateX(-50%);
+  width: 6rpx; height: 6rpx;
+  background: #FFFFFF;
+  border-radius: 50%;
+}
+
+/* user: 头+身 */
+.i-user {
+  width: 24rpx; height: 26rpx;
+  position: relative;
+}
+.i-user::before {
+  content: '';
+  position: absolute;
+  left: 50%; top: 0;
+  transform: translateX(-50%);
+  width: 12rpx; height: 12rpx;
+  background: currentColor;
+  border-radius: 50%;
+}
+.i-user::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 24rpx; height: 14rpx;
+  background: currentColor;
+  border-radius: 12rpx 12rpx 0 0;
+}
+
+.tab-text { font-size: 20rpx; margin-top: 4rpx; line-height: 1; }
+.text-brand { color: #2D6A4F; font-weight: 600; }
+.text-gray { color: #9A9A9A; }
+
+.badge {
+  position: absolute;
+  top: -4rpx; right: -10rpx;
+  min-width: 24rpx;
+  height: 24rpx;
+  padding: 0 6rpx;
+  background: #E03A3A;
+  color: #FFFFFF;
+  border-radius: 999rpx;
+  font-size: 18rpx;
+  line-height: 24rpx;
+  text-align: center;
+}

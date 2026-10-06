@@ -1,0 +1,93 @@
+<view class="container safe-bottom">
+  <!-- 宠物档案 -->
+  <view class="card pet-tip">
+    <view class="tip-left">
+      <text class="tip-emoji">🐶</text>
+      <view class="tip-text">
+        <view class="tip-title">还没有狗狗档案</view>
+        <view class="tip-sub">请先创建档案再下单</view>
+      </view>
+    </view>
+    <view class="tip-btn" bindtap="newArchive">新建档案</view>
+  </view>
+
+  <!-- 服务内容 -->
+  <view class="card">
+    <view class="card-title">服务内容</view>
+    <view class="service-list">
+      <view
+        wx:for="{{serviceTypes}}"
+        wx:key="key"
+        class="service-item {{activeService === item.key ? 'is-sel' : ''}}"
+        data-key="{{item.key}}"
+        bindtap="pickService"
+      >
+        <view class="service-radio"></view>
+        <view class="service-text">
+          <view class="service-name">{{item.label}}</view>
+          <view class="service-desc">{{item.desc}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 本次要做 -->
+  <view class="card">
+    <view class="card-title">本次要做</view>
+    <view class="todo-list">
+      <view
+        wx:for="{{todoTags}}"
+        wx:key="key"
+        class="todo-tag {{item.sel ? 'is-sel' : ''}}"
+        data-idx="{{index}}"
+        bindtap="toggleTodo"
+      >{{item.label}}</view>
+    </view>
+  </view>
+
+  <!-- 服务安排 -->
+  <view class="card">
+    <view class="card-title">服务安排</view>
+    <view class="plan-list">
+      <view
+        wx:for="{{plans}}"
+        wx:key="key"
+        class="plan-item {{activePlan === item.key ? 'is-sel' : ''}}"
+        data-key="{{item.key}}"
+        bindtap="pickPlan"
+      >{{item.label}}</view>
+    </view>
+
+    <view class="row">
+      <text class="row-label">服务日期</text>
+      <view class="row-value" bindtap="pickDate">{{serviceDate}}</view>
+    </view>
+    <view class="row">
+      <text class="row-label">每日服务时间</text>
+      <view class="row-value time" bindtap="pickTime">第1次 {{serviceTime}}</view>
+    </view>
+  </view>
+
+  <!-- 附加服务 -->
+  <view class="card">
+    <view class="card-title">附加服务</view>
+    <view
+      wx:for="{{addons}}"
+      wx:key="id"
+      class="addon"
+      data-idx="{{index}}"
+      bindtap="toggleAddon"
+    >
+      <view class="addon-left">
+        <view class="addon-check {{item.sel ? 'is-sel' : ''}}">{{item.sel ? '✓' : ''}}</view>
+        <text class="addon-name">{{item.name}}</text>
+      </view>
+      <text class="addon-price">¥{{item.price}}/次</text>
+    </view>
+  </view>
+
+  <!-- 底部提交 -->
+  <view class="bottom-bar">
+    <view class="submit" bindtap="submit">提交订单</view>
+  </view>
+</view>

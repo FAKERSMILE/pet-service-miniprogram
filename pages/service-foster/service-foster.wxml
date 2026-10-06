@@ -1,0 +1,104 @@
+<view class="page">
+  <!-- 日期与时间 -->
+  <view class="card">
+    <view class="field-row">
+      <text class="field-label">离开日期</text>
+      <picker mode="date" value="{{leaveDate}}" bindchange="onLeaveDateChange">
+        <view class="picker-value">{{leaveDate}}</view>
+      </picker>
+    </view>
+    <view class="field-row">
+      <text class="field-label">开始时间</text>
+      <picker mode="time" value="{{startTime}}" bindchange="onStartTimeChange">
+        <view class="picker-value">{{startTime}}</view>
+      </picker>
+    </view>
+  </view>
+
+  <!-- 地点 -->
+  <view class="card">
+    <view class="field-row align-top">
+      <view class="field-label-wrap">
+        <text class="field-label">大致地点<text class="required">*</text></text>
+      </view>
+      <input
+        class="field-input"
+        placeholder="请输入大致地点"
+        value="{{location}}"
+        bindinput="onLocationInput"
+      />
+    </view>
+    <view class="map-box" bindtap="chooseLocation">
+      <view class="map-placeholder">地图选点</view>
+      <view class="choose-btn">选择</view>
+    </view>
+  </view>
+
+  <!-- 每日预算 -->
+  <view class="card">
+    <view class="field-row">
+      <text class="field-label">每日预算</text>
+      <view class="budget-wrap">
+        <text class="yuan">¥</text>
+        <input
+          class="field-input budget-input"
+          type="digit"
+          value="{{dailyBudget}}"
+          bindinput="onBudgetInput"
+        />
+      </view>
+    </view>
+  </view>
+
+  <!-- 费用汇总 -->
+  <view class="card fee-card">
+    <view class="row">
+      <text class="label">寄养{{days}}天</text>
+      <text class="value fee-amount">¥{{totalFee}}</text>
+    </view>
+  </view>
+
+  <!-- 需求标签 -->
+  <view class="card">
+    <view class="card-title">需求标签</view>
+    <view class="tag-wrap">
+      <view
+        wx:for="{{tags}}"
+        wx:key="id"
+        class="tag {{item.selected ? 'tag-active' : ''}}"
+        data-id="{{item.id}}"
+        bindtap="toggleTag"
+      >{{item.name}}</view>
+    </view>
+
+    <view class="custom-tag-wrap">
+      <input
+        class="custom-input"
+        placeholder="自定义标签"
+        value="{{customTag}}"
+        bindinput="onCustomTagInput"
+        confirm-type="done"
+        bindconfirm="addCustomTag"
+      />
+      <view class="add-btn" bindtap="addCustomTag">添加</view>
+    </view>
+
+    <view class="tag-wrap" wx:if="{{customTags.length}}">
+      <view
+        wx:for="{{customTags}}"
+        wx:key="*this"
+        class="tag tag-active tag-custom"
+        data-index="{{index}}"
+        bindtap="removeCustomTag"
+      >{{item}} ×</view>
+    </view>
+  </view>
+
+  <!-- 占位，避免底部按钮遮挡 -->
+  <view class="bottom-placeholder"></view>
+
+  <!-- 提交按钮 -->
+  <view class="footer">
+    <button class="submit-btn" bindtap="submit">提交需求</button>
+  </view>
+</view>

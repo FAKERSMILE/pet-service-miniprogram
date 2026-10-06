@@ -1,0 +1,56 @@
+<view class="container safe-bottom">
+  <!-- 个人信息 -->
+  <view class="profile">
+    <view class="avatar" style="background: {{user.avatar}};" bindtap="goProfileSetup">{{user.avatarText}}</view>
+    <view class="profile-info">
+      <text class="nick">{{user.nickName}}</text>
+      <text class="edit" bindtap="goProfileSetup">点击编辑资料 ＞</text>
+    </view>
+  </view>
+
+  <!-- 订单 -->
+  <view class="card order-card" bindtap="goOrders">
+    <view class="order-num">{{orderCount}}</view>
+    <view class="order-label">我的订单</view>
+    <view class="order-arrow">＞</view>
+  </view>
+
+  <!-- 功能格 2x2 -->
+  <view class="card grid-card">
+    <view
+      wx:for="{{funcs}}"
+      wx:key="id"
+      class="grid-item"
+      data-id="{{item.id}}"
+      bindtap="goFunc"
+    >
+      <view class="grid-icon-wrap">
+        <view class="grid-circle">{{item.emoji}}</view>
+        <view wx:if="{{item.badge}}" class="grid-badge">{{item.badge}}</view>
+      </view>
+      <view class="grid-title">{{item.title}}</view>
+      <view class="grid-desc">{{item.desc}}</view>
+    </view>
+  </view>
+
+  <!-- 账号与保障 -->
+  <view class="card account-card">
+    <view class="card-title">账号与保障</view>
+    <view
+      wx:for="{{accounts}}"
+      wx:key="id"
+      class="account-item"
+      data-id="{{item.id}}"
+      bindtap="goAccount"
+    >
+      <view class="acc-left">
+        <text class="acc-emoji">{{item.emoji}}</text>
+        <view class="acc-text">
+          <view class="acc-title">{{item.title}}</view>
+          <view class="acc-desc">{{item.desc}}</view>
+        </view>
+      </view>
+      <text class="acc-arrow">＞</text>
+    </view>
+  </view>
+</view>

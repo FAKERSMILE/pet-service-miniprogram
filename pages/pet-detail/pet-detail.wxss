@@ -1,0 +1,90 @@
+.container { padding-bottom: calc(env(safe-area-inset-bottom) + 140rpx); }
+
+.cover {
+  position: relative;
+  height: 480rpx;
+  display: flex; align-items: center; justify-content: center;
+}
+.cover-emoji { font-size: 220rpx; }
+.cover-name {
+  position: absolute; bottom: 30rpx; left: 32rpx;
+  color: #1A1A1A; font-size: 44rpx; font-weight: 700;
+  text-shadow: 0 2rpx 6rpx rgba(255,255,255,0.6);
+}
+
+.info { background: #FFFFFF; padding: 26rpx 28rpx 18rpx; }
+.info-head { display: flex; align-items: baseline; gap: 16rpx; }
+.pet-name { font-size: 40rpx; font-weight: 700; color: #1A1A1A; }
+.pet-breed { font-size: 24rpx; color: #6B6B6B; }
+.info-owner { display: flex; align-items: center; margin-top: 14rpx; }
+.owner-avatar {
+  width: 48rpx; height: 48rpx;
+  background: linear-gradient(135deg, #3B6CFF 0%, #8AA9FF 100%);
+  color: #FFFFFF; font-size: 26rpx; font-weight: 700;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin-right: 12rpx;
+}
+.owner-name { color: #6B6B6B; font-size: 26rpx; }
+.info-tags { margin-top: 18rpx; display: flex; flex-wrap: wrap; gap: 14rpx; }
+
+.paw-card {
+  margin: 22rpx 24rpx 0;
+  padding: 24rpx;
+  background: linear-gradient(135deg, #1B4332 0%, #2D6A4F 100%);
+  border-radius: 18rpx;
+  color: #FFFFFF;
+}
+.paw-head { display: flex; justify-content: space-between; align-items: center; }
+.paw-title { font-size: 28rpx; font-weight: 700; }
+.paw-tags { display: flex; gap: 10rpx; }
+.paw-tag {
+  background: rgba(255,255,255,0.18);
+  padding: 4rpx 14rpx;
+  border-radius: 999rpx;
+  font-size: 20rpx;
+}
+.paw-desc { display: block; font-size: 22rpx; opacity: 0.88; margin-top: 10rpx; }
+.paw-status { font-size: 22rpx; margin-top: 10rpx; opacity: 0.92; }
+
+.like-row {
+  margin: 22rpx 28rpx 0;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.like-left { display: flex; align-items: center; gap: 10rpx; }
+.heart { font-size: 38rpx; }
+.like-count { font-size: 24rpx; color: #6B6B6B; }
+.like-action {
+  background: #FFFFFF;
+  border: 2rpx solid #2D6A4F;
+  color: #2D6A4F;
+  padding: 8rpx 24rpx;
+  border-radius: 999rpx;
+  font-size: 24rpx;
+  font-weight: 700;
+}
+
+.action-bar {
+  margin: 26rpx 24rpx 0;
+  display: flex;
+  gap: 16rpx;
+}
+.action-side {
+  flex: 1;
+  text-align: center;
+  padding: 22rpx 0;
+  background: #F5F5F5;
+  color: #6B6B6B;
+  border-radius: 999rpx;
+  font-size: 26rpx;
+}
+.action-primary {
+  flex: 2;
+  text-align: center;
+  padding: 22rpx 0;
+  background: #3B6CFF;
+  color: #FFFFFF;
+  border-radius: 999rpx;
+  font-size: 28rpx;
+  font-weight: 700;
+}

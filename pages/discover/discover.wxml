@@ -1,0 +1,75 @@
+<view class="page">
+  <!-- 装饰叶片 -->
+  <view class="leaf leaf-tl">🌿</view>
+  <view class="leaf leaf-bl">🍃</view>
+
+  <!-- 顶部 -->
+  <view class="header">
+    <view class="header-left">
+      <view class="big-title">社交全靠我家狗 <text class="paw">🐾</text></view>
+      <view class="sub-title">为 {{myDog}} 寻找朋友</view>
+    </view>
+    <view class="header-right" bindtap="goLikeList">
+      <view class="like-pill">♡ 喜欢列表 <text class="num">{{likeCount}}</text></view>
+      <view class="remain">今日剩余 {{remain}}/{{remainTotal}}</view>
+    </view>
+  </view>
+  <view class="slogan">让狗狗，遇见更好的伙伴</view>
+
+  <!-- 卡组 -->
+  <view class="deck">
+    <!-- 底层堆叠卡（最多显示2张） -->
+    <view wx:for="{{cards}}" wx:key="id" wx:if="{{index > 0 && index < 3}}" class="card ghost ghost-{{index}}"></view>
+
+    <!-- 顶层可拖动卡 -->
+    <view
+      wx:if="{{cards.length}}"
+      class="card top-card {{animating ? (flyDir === 'right' ? 'fly-right' : 'fly-left') : ''}}"
+      style="{{dragged && !animating ? 'transform: translateX(' + swipeX + 'px) rotate(' + rotate + 'deg);' : ''}}"
+      bindtouchstart="touchStart"
+      bindtouchmove="touchMove"
+      bindtouchend="touchEnd"
+    >
+      <view class="photo" style="background: {{cards[0].bg}};">
+        <text class="photo-emoji">{{cards[0].emoji}}</text>
+        <!-- 左右滑提示角标 -->
+        <view class="stamp stamp-like {{dragged && swipeX > 30 ? 'show' : ''}}">喜欢</view>
+        <view class="stamp stamp-pass {{dragged && swipeX < -30 ? 'show' : ''}}">跳过</view>
+      </view>
+      <view class="card-info">
+        <view class="name-row">
+          <text class="dog-name">{{cards[0].name}}</text>
+          <text class="dog-breed">{{cards[0].breed}}</text>
+          <view class="fate">
+            <text class="fate-label">缘分值</text>
+            <text class="fate-num">{{cards[0].fate}}%</text>
+          </view>
+        </view>
+        <view class="loc-row">📍 {{cards[0].location}} · 未设置我的位置</view>
+        <view class="tag-row">
+          <text wx:for="{{cards[0].tags}}" wx:key="*this" class="dtag">{{item}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 空卡组 -->
+    <view wx:if="{{!cards.length}}" class="empty">正在为你寻找新的小伙伴…</view>
+  </view>
+
+  <!-- 操作区 -->
+  <view class="actions">
+    <view class="act act-pass" bindtap="onTapPass">
+      <view class="act-icon">💔</view>
+      <text class="act-label">不感兴趣</text>
+    </view>
+    <view class="act act-profile" bindtap="onViewProfile">
+      <view class="act-icon">📋</view>
+      <text class="act-label">查看档案</text>
+    </view>
+    <view class="act act-like" bindtap="onTapLike">
+      <view class="act-icon">❤️</view>
+      <text class="act-label act-label-green">加入喜欢</text>
+    </view>
+  </view>
+  <view class="hint">左滑跳过 · 右滑喜欢</view>
+</view>

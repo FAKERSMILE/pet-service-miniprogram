@@ -1,0 +1,74 @@
+.container { padding-bottom: calc(env(safe-area-inset-bottom) + 140rpx); }
+
+.service-head { padding: 28rpx; }
+.service-title { font-size: 34rpx; font-weight: 700; color: #1A1A1A; }
+.service-meta { margin-top: 10rpx; color: #9A9A9A; font-size: 24rpx; }
+.meta-area { color: #2D6A4F; font-weight: 600; }
+.meta-dot { margin: 0 8rpx; }
+.price-row { display: flex; align-items: baseline; gap: 16rpx; margin-top: 18rpx; }
+.price { color: #3B6CFF; font-size: 48rpx; font-weight: 800; }
+.price-note { color: #9A9A9A; font-size: 22rpx; }
+
+.card-title { font-size: 26rpx; color: #9A9A9A; margin-bottom: 16rpx; }
+.tag-list { display: flex; flex-wrap: wrap; gap: 14rpx; }
+
+.scene-card { padding: 24rpx; }
+.scene-swiper { height: 320rpx; border-radius: 16rpx; overflow: hidden; }
+.scene-slide {
+  height: 100%;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+}
+.scene-emoji { font-size: 100rpx; }
+.scene-text { font-size: 24rpx; color: #6B6B6B; margin-top: 12rpx; }
+
+.provider-card { padding: 24rpx; }
+.provider { display: flex; align-items: center; gap: 18rpx; }
+.provider-avatar {
+  width: 96rpx; height: 96rpx;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: #FFFFFF; font-size: 36rpx; font-weight: 700;
+}
+.provider-info { flex: 1; }
+.provider-name-row { display: flex; align-items: center; gap: 12rpx; flex-wrap: wrap; }
+.provider-name { font-size: 30rpx; font-weight: 700; color: #1A1A1A; }
+.v-tag {
+  background: #3B6CFF; color: #FFFFFF;
+  padding: 4rpx 14rpx; border-radius: 999rpx;
+  font-size: 20rpx;
+}
+.t-tag {
+  background: #2D6A4F; color: #FFFFFF;
+  padding: 4rpx 14rpx; border-radius: 999rpx;
+  font-size: 20rpx;
+}
+.provider-meta { margin-top: 8rpx; color: #9A9A9A; font-size: 22rpx; }
+.dot { margin: 0 6rpx; }
+
+.bottom-bar {
+  position: fixed; left: 0; right: 0; bottom: 0;
+  padding: 16rpx 24rpx calc(env(safe-area-inset-bottom) + 16rpx);
+  background: #FFFFFF;
+  display: flex; gap: 12rpx;
+  box-shadow: 0 -2rpx 12rpx rgba(0,0,0,0.06);
+}
+.bb-side {
+  flex: 1;
+  text-align: center;
+  padding: 22rpx 0;
+  background: #F5F5F5;
+  color: #6B6B6B;
+  border-radius: 999rpx;
+  font-size: 22rpx;
+}
+.bb-primary {
+  flex: 2;
+  text-align: center;
+  padding: 22rpx 0;
+  background: #3B6CFF;
+  color: #FFFFFF;
+  border-radius: 999rpx;
+  font-size: 28rpx;
+  font-weight: 700;
+}

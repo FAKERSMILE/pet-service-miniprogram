@@ -1,0 +1,94 @@
+<view class="container safe-bottom">
+  <!-- 顶部位置栏 -->
+  <view class="loctop">
+    <view class="loctop-city" bindtap="goMap">
+      <text class="loctop-pin">📍</text>
+      <text class="loctop-name">{{cityName}}</text>
+      <view class="loctop-caret"></view>
+    </view>
+    <view class="loctop-pick" bindtap="goMap">选位置</view>
+  </view>
+
+  <!-- 页面标题 -->
+  <view class="page-title">预定狗狗服务</view>
+
+  <!-- Tab切换: 0=遛狗员, 1=寄养家庭 -->
+  <view class="tabs">
+    <view
+      wx:for="{{tabs}}"
+      wx:key="key"
+      class="tab {{tab === item.key ? 'is-sel' : ''}}"
+      data-key="{{item.key}}"
+      bindtap="switchTab"
+    >
+      <text class="tab-icon {{item.icon === 'paw' ? 'icon-paw' : 'icon-home'}}">
+        {{item.icon === 'paw' ? '🐾' : '🏠'}}
+      </text>
+      <text class="tab-label">{{item.label}}</text>
+    </view>
+  </view>
+
+  <!-- 发布需求卡片 -->
+  <view class="publish-card">
+    <view class="publish-tag">{{publishTag}}</view>
+    <view class="publish-title">{{publishTitle}}</view>
+    <view class="publish-desc">{{publishDesc}}</view>
+    <view class="publish-illust">
+      <view class="illust-circle">
+        <text class="illust-emoji">🐕</text>
+      </view>
+      <view class="illust-paw">🐾</view>
+      <view class="illust-paw paw-r">🐾</view>
+    </view>
+    <view class="publish-btn" bindtap="goPublish">
+      <text>{{publishBtn}}</text>
+      <text class="publish-arrow">→</text>
+    </view>
+  </view>
+
+  <!-- 服务者列表 -->
+  <view class="server-list">
+    <view
+      wx:for="{{serverList}}"
+      wx:key="id"
+      class="server-card"
+      data-id="{{item.id}}"
+      bindtap="goDetail"
+    >
+      <view class="server-avatar" style="background: {{item.avatar}};">
+        <text class="server-emoji">{{item.emoji}}</text>
+      </view>
+      <view class="server-body">
+        <view class="server-head">
+          <text class="server-name">{{item.name}}</text>
+          <view class="server-badges">
+            <view
+              wx:for="{{item.badges}}"
+              wx:for-item="b"
+              wx:key="type"
+              class="s-badge s-badge-{{b.color}}"
+            >{{b.label}}</view>
+          </view>
+        </view>
+        <view class="server-meta">
+          <text>{{item.role}}</text>
+          <text class="dot">·</text>
+          <text>{{item.orderCount}}单</text>
+          <text class="dot">·</text>
+          <text>投诉{{item.complaintRate}}</text>
+        </view>
+        <view class="server-foot">
+          <view class="server-price">
+            <text class="price-num">{{item.price}}</text>
+            <text class="price-unit">/次</text>
+          </view>
+          <view class="server-status s-status-{{item.statusColor}}">{{item.status}}</view>
+        </view>
+        <view class="server-district">
+          <text class="pin">📍</text>
+          <text>{{item.district}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
