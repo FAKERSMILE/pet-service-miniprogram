@@ -32,7 +32,13 @@ Page({
     })
   },
   onChooseCity() {
-    wx.showToast({ title: '选择城市开发中', icon: 'none' })
+    const cities = ['南京', '上海', '杭州', '苏州', '成都']
+    wx.showActionSheet({
+      itemList: cities,
+      success: (r) => {
+        this.setData({ city: cities[r.tapIndex] })
+      }
+    })
   },
   onChooseLocation() {
     wx.chooseLocation({

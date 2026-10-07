@@ -88,8 +88,11 @@ Page({
     goType: 'walk'
   },
 
-  onLoad() {
+  onLoad(options) {
     this.syncTabBar()
+    // 支持外部指定类型：service-list?type=walk|foster
+    if (options && options.type === 'foster') this.switchTabByKey(1)
+    if (options && options.type === 'walk') this.switchTabByKey(0)
   },
   onShow() {
     this.syncTabBar()
@@ -105,7 +108,9 @@ Page({
 
   // 切换Tab: 0=遛狗员, 1=寄养家庭
   switchTab(e) {
-    const tab = Number(e.currentTarget.dataset.key)
+    this.switchTabByKey(Number(e.currentTarget.dataset.key))
+  },
+  switchTabByKey(tab) {
     const c = this.data.contentMap[tab]
     this.setData({
       tab,

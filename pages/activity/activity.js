@@ -94,7 +94,46 @@ Page({
       : this.data.activities.filter(a => a.cat === key)
     this.setData({ filteredActivities: list })
   },
-  createActivity() { wx.showToast({ title: '发起活动开发中', icon: 'none' }) },
+  createActivity() {
+    wx.showModal({
+      title: '发起活动',
+      editable: true,
+      placeholderText: '输入活动标题，如：周末滨江遛狗局',
+      success: (r) => {
+        if (!r.confirm) return
+        const title = (r.content || '').trim()
+        if (!title) {
+          wx.showToast({ title: '活动标题不能为空', icon: 'none' })
+          return
+        }
+        const today = new Date()
+        const pad = n => (n < 10 ? '0' + n : '' + n)
+        const date = today.getFullYear() + '-' + pad(today.getMonth() + 1) + '-' + pad(today.getDate())
+        const id = this.data.activities.reduce((m, a) => Math.max(m, a.id), 0) + 1
+        const activity = {
+          id,
+          title,
+          cat: 'meetup',
+          status: '报名中',
+          statusType: 'open',
+          date,
+          timeStart: '08:00',
+          timeEnd: '20:00',
+          location: this.data.location.city + '·' + this.data.location.district,
+          host: '我', hostColor: '#2D6A4F',
+          signed: 1, total: 30,
+          cover: '#B7E4C7'
+        }
+        const activities = [activity].concat(this.data.activities)
+        this.setData({
+          activities,
+          totalActivities: this.data.totalActivities + 1
+        })
+        this.applyFilter(this.data.activeTab)
+        wx.showToast({ title: '发布成功', icon: 'success' })
+      }
+    })
+  },
   openActivity(e) {
     const id = e.currentTarget.dataset.id
     wx.showToast({ title: '活动 #' + id + ' 详情', icon: 'none' })

@@ -81,7 +81,26 @@ Page({
       this.setData({ cityName: ['南京','上海','杭州','苏州'][r.tapIndex], bannerText: '狗狗大队·' + ['南京','上海','杭州','苏州'][r.tapIndex] })
     }})
   },
-  onSearch() { wx.showToast({ title: '搜索功能开发中', icon: 'none' }) },
+  onSearch() {
+    // 快捷搜索入口：跳转对应页面
+    const targets = [
+      '/pages/service-list/service-list?type=walk',
+      '/pages/service-list/service-list?type=foster',
+      '/pages/discover/discover',
+      '/pages/activity/activity'
+    ]
+    wx.showActionSheet({
+      itemList: ['找遛狗员', '找寄养家庭', '逛狗探广场', '看附近活动'],
+      success: (r) => {
+        const url = targets[r.tapIndex]
+        if (url.indexOf('/pages/discover/') > -1 || url.indexOf('/pages/activity/') > -1) {
+          wx.switchTab({ url })
+        } else {
+          wx.navigateTo({ url })
+        }
+      }
+    })
+  },
   switchSquareTab(e) {
     const key = e.currentTarget.dataset.key
     this.setData({

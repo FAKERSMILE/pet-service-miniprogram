@@ -1,0 +1,50 @@
+<view class="container">
+  <!-- 状态筛选 -->
+  <view class="tabs">
+    <view
+      wx:for="{{tabs}}"
+      wx:key="key"
+      class="tab {{activeTab === item.key ? 'is-sel' : ''}}"
+      data-key="{{item.key}}"
+      bindtap="switchTab"
+    >{{item.label}}</view>
+  </view>
+
+  <!-- 订单列表 -->
+  <view class="order-list">
+    <view wx:if="{{!filteredOrders.length}}" class="empty">
+      <text class="empty-emoji">🐕</text>
+      <text class="empty-text">暂无相关订单</text>
+    </view>
+
+    <view
+      wx:for="{{filteredOrders}}"
+      wx:key="id"
+      class="order-card"
+    >
+      <view class="order-top">
+        <text class="order-no">订单号 {{item.orderNo}}</text>
+        <view class="order-status st-{{item.statusType}}">{{item.statusText}}</view>
+      </view>
+      <view class="order-body" data-id="{{item.serviceId}}" bindtap="goService">
+        <view class="order-icon" style="background: {{item.iconBg}};">
+          <text class="order-emoji">{{item.emoji}}</text>
+        </view>
+        <view class="order-info">
+          <view class="order-title">{{item.title}}</view>
+          <view class="order-time">{{item.date}} {{item.time}}</view>
+          <view class="order-server">{{item.server}}</view>
+        </view>
+        <view class="order-price">
+          <text class="price-num">¥{{item.price}}</text>
+        </view>
+      </view>
+      <view class="order-actions">
+        <view class="btn ghost" data-no="{{item.orderNo}}" bindtap="copyOrderNo">复制单号</view>
+        <view wx:if="{{item.statusType === 'pending'}}" class="btn primary" data-id="{{item.serviceId}}" bindtap="goService">查看服务</view>
+        <view wx:elif="{{item.statusType === 'done'}}" class="btn primary" data-id="{{item.id}}" bindtap="goReview">去评价</view>
+        <view wx:else class="btn primary" data-no="{{item.orderNo}}" bindtap="cancelOrder">取消订单</view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -25,7 +25,7 @@ Page({
     }
   },
   goProfileSetup() { wx.navigateTo({ url: '/pages/profile-setup/profile-setup' }) },
-  goOrders()       { wx.showToast({ title: '订单列表开发中', icon: 'none' }) },
+  goOrders() { wx.navigateTo({ url: '/pages/orders/orders' }) },
   goFunc(e) {
     const id = e.currentTarget.dataset.id
     const map = {
@@ -38,6 +38,30 @@ Page({
   },
   goAccount(e) {
     const id = e.currentTarget.dataset.id
-    wx.showToast({ title: id + ' 开发中', icon: 'none' })
+    if (id === 'coupon') {
+      wx.showModal({
+        title: '我的卡券',
+        content: '新人立减 ¥10（满 ¥50 可用，有效期至 2026-12-31）\n遛狗次卡 9 折（剩余 5 次）',
+        showCancel: false,
+        confirmText: '知道了'
+      })
+    } else if (id === 'support') {
+      wx.showModal({
+        title: '保障与客服',
+        content: '服务全程平台保障\n客服热线：400-000-0000\n在线时间：7x12 小时（8:00-20:00）',
+        confirmText: '拨打热线',
+        cancelText: '关闭',
+        success: (r) => {
+          if (r.confirm) wx.makePhoneCall({ phoneNumber: '4000000000', fail: () => {} })
+        }
+      })
+    } else if (id === 'privacy') {
+      wx.showModal({
+        title: '隐私保护',
+        content: '· 地址信息仅对接单服务者可见\n· 狗狗档案默认仅自己可见\n· 可随时在设置中注销并删除全部数据',
+        showCancel: false,
+        confirmText: '知道了'
+      })
+    }
   }
 })

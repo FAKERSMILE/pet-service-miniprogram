@@ -11,6 +11,7 @@
     "pages/service-map/service-map",
     "pages/service-detail/service-detail",
     "pages/order-confirm/order-confirm",
+    "pages/orders/orders",
     "pages/lost-detail/lost-detail",
     "pages/verify-center/verify-center",
     "pages/pet-detail/pet-detail"
