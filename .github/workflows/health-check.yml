@@ -1,0 +1,102 @@
+name: Daily Health Check
+
+on:
+  schedule:
+    # UTC 00:00 = 北京时间 08:00
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Run health check
+        run: |
+          python -c "
+          import json, os, glob
+          from datetime import datetime, timezone
+
+          results = []
+
+          # 1. 校验所有 JSON 配置文件
+          json_files = ['app.json', 'project.config.json', 'sitemap.json'] + \
+                       glob.glob('pages/**/*.json', recursive=True) + \
+                       glob.glob('components/**/*.json', recursive=True)
+          for jf in sorted(set(json_files)):
+              if os.path.exists(jf):
+                  try:
+                      json.load(open(jf, encoding='utf-8'))
+                      results.append(f'✅ {jf}')
+                  except Exception as e:
+                      results.append(f'❌ {jf}: {e}')
+
+          # 2. app.json 配置一致性检查
+          try:
+              app = json.load(open('app.json', encoding='utf-8'))
+              pages = app.get('pages', [])
+              results.append(f'✅ pages 共 {len(pages)} 个页面')
+
+              tabBar = app.get('tabBar', {}).get('list', [])
+              for tab in tabBar:
+                  pagePath = tab.get('pagePath', '')
+                  if pagePath and pagePath not in pages:
+                      results.append(f'❌ tabBar 页面 {pagePath} 不在 pages 列表中')
+              if tabBar:
+                  results.append(f'✅ tabBar {len(tabBar)} 个配置一致')
+          except Exception as e:
+              results.append(f'❌ app.json 校验失败: {e}')
+
+          # 3. 检查 pages 目录与 app.json 的一致性
+          try:
+              for page in pages:
+                  wxml = page + '.wxml'
+                  js = page + '.js'
+                  if not os.path.exists(wxml):
+                      results.append(f'❌ 缺少 {wxml}')
+                  if not os.path.exists(js):
+                      results.append(f'❌ 缺少 {js}')
+              results.append(f'✅ pages 文件完整性检查完成')
+          except Exception as e:
+              results.append(f'❌ 文件完整性检查失败: {e}')
+
+          # 4. 统计代码行数（项目活跃度指标）
+          try:
+              import subprocess
+              js_count = len(glob.glob('pages/**/*.js', recursive=True))
+              wxml_count = len(glob.glob('pages/**/*.wxml', recursive=True))
+              results.append(f'✅ 代码规模：{js_count} 个 JS + {wxml_count} 个 WXML')
+          except Exception as e:
+              results.append(f'❌ 代码统计失败: {e}')
+
+          now = datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')
+          passed = sum(1 for r in results if r.startswith('✅'))
+          failed = sum(1 for r in results if r.startswith('❌'))
+          log_entry = f'\n## {now}\n\n' + '\n'.join(f'- {r}' for r in results) + f'\n\n**汇总**: {passed} 通过 / {failed} 失败\n'
+
+          log_path = 'HEALTH_LOG.md'
+          if not os.path.exists(log_path):
+              with open(log_path, 'w', encoding='utf-8') as f:
+                  f.write('# 狗狗大队健康日志\n\n每日自动健康检查记录（GitHub Actions 定时任务）。\n\n')
+          with open(log_path, 'a', encoding='utf-8') as f:
+              f.write(log_entry)
+
+          print(log_entry)
+          "
+
+      - name: Commit health log
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add HEALTH_LOG.md
+          git diff --staged --quiet || git commit -m "chore: 每日健康检查 $(date -u +%Y-%m-%d)"
+          git push
